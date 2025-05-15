@@ -1,0 +1,20 @@
+2025-05-15 23:18:12,519 INFO Starting model evaluation...
+2025-05-15 23:18:12,519 WARNING Checkpoint not found for resnet at checkpoints/resnet_epoch_X.pth. Skipping evaluation.
+2025-05-15 23:18:12,519 WARNING Checkpoint not found for densenet at checkpoints/densenet_epoch_X.pth. Skipping evaluation.
+2025-05-15 23:18:12,519 WARNING Checkpoint not found for hybrid_model at checkpoints/hybrid_model_epoch_X.pth. Skipping evaluation.
+2025-05-15 23:18:12,519 INFO Model evaluation finished.
+2025-05-15 23:19:02,442 INFO Starting model evaluation...
+2025-05-15 23:19:02,443 WARNING Checkpoint not found for resnet at checkpoints/resnet_epoch_X.pth. Skipping evaluation.
+2025-05-15 23:19:02,443 WARNING Checkpoint not found for densenet at checkpoints/densenet_epoch_X.pth. Skipping evaluation.
+2025-05-15 23:19:02,443 WARNING Checkpoint not found for hybrid_model at checkpoints/hybrid_model_epoch_X.pth. Skipping evaluation.
+2025-05-15 23:19:02,443 INFO Model evaluation finished.
+2025-05-15 23:19:59,550 INFO Starting model evaluation...
+2025-05-15 23:19:59,551 WARNING Checkpoint not found for resnet at checkpoints/resnet_epoch_X.pth. Skipping evaluation.
+2025-05-15 23:19:59,551 WARNING Checkpoint not found for densenet at checkpoints/densenet_epoch_X.pth. Skipping evaluation.
+2025-05-15 23:19:59,551 WARNING Checkpoint not found for hybrid_model at checkpoints/hybrid_model_epoch_X.pth. Skipping evaluation.
+2025-05-15 23:19:59,551 INFO Model evaluation finished.
+2025-05-15 23:20:40,190 INFO Starting model evaluation...
+2025-05-15 23:20:40,191 WARNING Checkpoint not found for resnet at checkpoints/resnet_epoch_X.pth. Skipping evaluation.
+2025-05-15 23:20:40,191 WARNING Checkpoint not found for densenet at checkpoints/densenet_epoch_X.pth. Skipping evaluation.
+2025-05-15 23:20:40,191 WARNING Checkpoint not found for hybrid_model at checkpoints/hybrid_model_epoch_X.pth. Skipping evaluation.
+2025-05-15 23:20:40,191 INFO Model evaluation finished.
