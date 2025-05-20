@@ -7,8 +7,13 @@ def calculate_metrics(predictions, labels):
     # Ensure predictions and labels are on CPU and converted to numpy arrays
     if isinstance(predictions, torch.Tensor):
         predictions = predictions.cpu().numpy()
+    elif isinstance(predictions, list):
+        predictions = np.array(predictions)
+        
     if isinstance(labels, torch.Tensor):
         labels = labels.cpu().numpy()
+    elif isinstance(labels, list):
+        labels = np.array(labels)
 
     # Assuming binary classification (deepfake or real)
     # If using sigmoid output, convert probabilities to class labels (0 or 1)

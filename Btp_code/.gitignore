@@ -1,0 +1,61 @@
+# Ignore large dataset directories
+data/
+dataset/
+checkpoints/
+
+# Ignore generated results and logs
+results/
+logs/
+
+# Ignore model checkpoints (*.pth files)
+*.pth
+
+# Ignore all image files in any directory
+*.jpg
+*.png
+*.jpeg
+*.bmp
+*.gif
+
+# Python-specific
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+.directory
+desktop.ini
+
+# Editor specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~ 

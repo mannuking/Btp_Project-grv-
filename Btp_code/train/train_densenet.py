@@ -94,7 +94,7 @@ def train_densenet():
         # logger.info(f"Epoch [{epoch+1}/{config.NUM_EPOCHS}] Validation Accuracy: {metrics['accuracy']:.4f}, F1 Score: {metrics['f1_score']:.4f}")
 
         # Save checkpoint (optional)
-        if (epoch + 1) % 50 == 0: # Save every 50 epochs
+        if (epoch + 1) % 5 == 0: # Save every 5 epochs
              save_checkpoint(densenet_model, optimizer, epoch, avg_train_loss, config.CHECKPOINT_DIR, 'densenet')
 
     logger.info("DenseNet training finished.")

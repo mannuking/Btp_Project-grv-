@@ -28,16 +28,13 @@ def train_resnet():
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(resnet_model.parameters(), lr=config.LEARNING_RATE)
 
-    # Create dataloaders (assuming train/validation split is handled)
-    # You would typically need separate dataloaders for training and validation data
-    # For simplicity, this example uses one dataloader.
-    # In a real scenario, you'd split your dataset and create two dataloaders.
-    train_dataloader = create_dataloader(config.PROCESSED_DIR, config.BATCH_SIZE, shuffle=True)
-    # val_dataloader = create_dataloader(config.PROCESSED_DIR, config.BATCH_SIZE, shuffle=False) # Example for validation
+    # Create dataloaders (using train/validation split)
+    train_dataloader = create_dataloader(config.PROCESSED_DIR, config.BATCH_SIZE, shuffle=True, split='train')
+    val_dataloader = create_dataloader(config.PROCESSED_DIR, config.BATCH_SIZE, shuffle=False, split='test')
 
     # Training loop
     train_losses = []
-    # val_losses = [] # For validation
+    val_losses = [] # For validation
 
     for epoch in range(config.NUM_EPOCHS):
         resnet_model.train() # Set model to training mode
@@ -67,34 +64,34 @@ def train_resnet():
         train_losses.append(avg_train_loss)
         logger.info(f"Epoch [{epoch+1}/{config.NUM_EPOCHS}] Average Train Loss: {avg_train_loss:.4f}")
 
-        # Validation loop (optional but recommended)
-        # resnet_model.eval() # Set model to evaluation mode
-        # total_val_loss = 0.0
-        # all_predictions = []
-        # all_labels = []
-        # with torch.no_grad():
-        #     for images, labels in val_dataloader:
-        #         images = images.to(device)
-        #         labels = labels.to(device)
-        #
-        #         outputs = resnet_model(images)
-        #         loss = criterion(outputs, labels)
-        #
-        #         total_val_loss += loss.item()
-        #         _, predicted = torch.max(outputs.data, 1)
-        #         all_predictions.extend(predicted.cpu().numpy())
-        #         all_labels.extend(labels.cpu().numpy())
-        #
-        # avg_val_loss = total_val_loss / len(val_dataloader)
-        # val_losses.append(avg_val_loss)
-        # logger.info(f"Epoch [{epoch+1}/{config.NUM_EPOCHS}] Average Validation Loss: {avg_val_loss:.4f}")
-        #
-        # # Calculate and log metrics (optional)
-        # metrics = calculate_metrics(all_predictions, all_labels)
-        # logger.info(f"Epoch [{epoch+1}/{config.NUM_EPOCHS}] Validation Accuracy: {metrics['accuracy']:.4f}, F1 Score: {metrics['f1_score']:.4f}")
+        # Validation loop
+        resnet_model.eval() # Set model to evaluation mode
+        total_val_loss = 0.0
+        all_predictions = []
+        all_labels = []
+        with torch.no_grad():
+            for images, labels in val_dataloader:
+                images = images.to(device)
+                labels = labels.to(device)
+
+                outputs = resnet_model(images)
+                loss = criterion(outputs, labels)
+
+                total_val_loss += loss.item()
+                _, predicted = torch.max(outputs.data, 1)
+                all_predictions.extend(predicted.cpu().numpy())
+                all_labels.extend(labels.cpu().numpy())
+
+        avg_val_loss = total_val_loss / len(val_dataloader)
+        val_losses.append(avg_val_loss)
+        logger.info(f"Epoch [{epoch+1}/{config.NUM_EPOCHS}] Average Validation Loss: {avg_val_loss:.4f}")
+
+        # Calculate and log metrics
+        metrics = calculate_metrics(all_predictions, all_labels)
+        logger.info(f"Epoch [{epoch+1}/{config.NUM_EPOCHS}] Validation Accuracy: {metrics['accuracy']:.4f}, F1 Score: {metrics['f1_score']:.4f}")
 
         # Save checkpoint (optional)
-        if (epoch + 1) % 50 == 0: # Save every 50 epochs
+        if (epoch + 1) % 5 == 0: # Save every 5 epochs instead of 50
              save_checkpoint(resnet_model, optimizer, epoch, avg_train_loss, config.CHECKPOINT_DIR, 'resnet')
 
     logger.info("ResNet training finished.")
